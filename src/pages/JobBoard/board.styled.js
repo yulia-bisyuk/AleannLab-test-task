@@ -1,0 +1,42 @@
+import styled from 'styled-components';
+
+const List = styled.ul`
+  margin-top: 9px;
+  margin-bottom: 26px;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  padding: 13px 16px 27px 16px;
+  background-color: ${props => props.theme.secondaryBgColor};
+  border-radius: 8px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`;
+
+const Image = styled.img`
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+`;
+
+const StarIcon = styled.svg`
+  width: 10px;
+  height: 10px;
+`;
+
+const DatePosted = styled.span`
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.21;
+  letter-spacing: 0.206667px;
+  color: ${props => props.theme.jobDetailsColor};
+`;
+
+const LocationIcon = styled.svg`
+  width: 13px;
+  height: 18px;
+`;
+export { List, ListItem, StarIcon, DatePosted, Image, LocationIcon };
