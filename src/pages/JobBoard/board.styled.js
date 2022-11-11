@@ -7,6 +7,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   display: flex;
+  height: 206px;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -22,21 +23,8 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-const StarIcon = styled.svg`
-  width: 10px;
-  height: 10px;
+const ContentWrapper = styled.div`
+  width: 278px;
 `;
 
-const DatePosted = styled.span`
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.21;
-  letter-spacing: 0.206667px;
-  color: ${props => props.theme.jobDetailsColor};
-`;
-
-const LocationIcon = styled.svg`
-  width: 13px;
-  height: 18px;
-`;
-export { List, ListItem, StarIcon, DatePosted, Image, LocationIcon };
+export { List, ListItem, Image, ContentWrapper };

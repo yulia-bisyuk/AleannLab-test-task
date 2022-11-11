@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { formatDistanceToNow } from 'date-fns';
-import sprite from '../../icons/sprite.svg';
+
 import image from '../../images/hospital-1.jpg';
-import {
-  StarIcon,
-  DatePosted,
-  ListItem,
-  Image,
-  LocationIcon,
-  List,
-} from './board.styled';
+import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
+import JobDescription from 'components/JobDescription/JobDescription';
+import { ListItem, Image, List, ContentWrapper } from './board.styled';
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);
@@ -35,13 +29,6 @@ const JobBoard = () => {
 
   console.log('jobs', jobs);
 
-  const parseDate = date => {
-    return date
-      .slice(0, 10)
-      .split('-')
-      .map(item => Number(item));
-  };
-
   return (
     <>
       {loading && <div>Loading...</div>}
@@ -52,33 +39,10 @@ const JobBoard = () => {
           jobs.results.map(job => (
             <ListItem key={job.id}>
               <Image src={image} width="66px" height="66px"></Image>
-              <div className="content">
-                {[...Array(5)].map((e, i) => (
-                  <StarIcon key={i}>
-                    <use href={sprite + '#icon-star'} />
-                  </StarIcon>
-                ))}
-                <DatePosted>
-                  {'Posted ' +
-                    formatDistanceToNow(
-                      new Date(
-                        parseDate(job.publication_date)[0],
-                        parseDate(job.publication_date)[1],
-                        parseDate(job.publication_date)[2]
-                      )
-                    ) +
-                    ' ago'}
-                </DatePosted>
-                <h1>{job.name}</h1>
-                <span>
-                  Department name <span>.</span>
-                </span>
-                <span>{job.categories[0].name}</span>
-                <LocationIcon>
-                  <use href={sprite + '#icon-location'} />
-                </LocationIcon>
-                <span>{job.locations[0].name}</span>
-              </div>
+              <ContentWrapper>
+                <AdditionalInfo job={job} />
+                <JobDescription job={job} />
+              </ContentWrapper>
             </ListItem>
           ))}
       </List>
