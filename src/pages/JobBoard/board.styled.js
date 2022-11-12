@@ -6,6 +6,7 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
+  position: relative;
   display: flex;
   height: 206px;
   &:not(:last-child) {
@@ -18,12 +19,15 @@ const ListItem = styled.li`
 `;
 
 const Image = styled.img`
+  position: absolute;
+  top: 50px;
   width: 66px;
   height: 66px;
   border-radius: 50%;
 `;
 
 const ContentWrapper = styled.div`
+  margin-left: auto;
   width: 278px;
 `;
 

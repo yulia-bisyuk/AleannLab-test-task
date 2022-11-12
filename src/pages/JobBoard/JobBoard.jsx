@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import image from '../../images/hospital-1.jpg';
+import image from '../../images/hospital-3.jpg';
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
 import JobDescription from 'components/JobDescription/JobDescription';
 import { ListItem, Image, List, ContentWrapper } from './board.styled';
