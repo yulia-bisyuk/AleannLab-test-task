@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
-import image from '../../images/hospital-3.jpg';
+import { imagesPack } from 'images/images';
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
 import JobDescription from 'components/JobDescription/JobDescription';
 import { ListItem, Image, List, ContentWrapper } from './board.styled';
@@ -17,7 +16,18 @@ const JobBoard = () => {
     axios
       .get('https://www.themuse.com/api/public/jobs?page=1')
       .then(res => {
-        setJobs(res.data);
+        // console.log('res.data', res.data.results);
+        // console.log('imagesPack', imagesPack);
+        const jobsWithImgs = res.data.results.map(data => {
+          return {
+            ...data,
+            url: imagesPack,
+          };
+        });
+
+        // console.log('jobsWithImgs', jobsWithImgs);
+
+        setJobs(jobsWithImgs);
         setSuccess(true);
         setLoading(false);
       })
@@ -36,9 +46,12 @@ const JobBoard = () => {
       <List>
         {success &&
           jobs &&
-          jobs.results.map(job => (
+          jobs.map((job, index) => (
             <ListItem key={job.id}>
-              <Image src={image} width="66px" height="66px"></Image>
+              <Image src={job.url[index]} width="66px" height="66px" />
+
+              {/* <Image src={img1} width="66px" height="66px"></Image> */}
+
               <ContentWrapper>
                 <AdditionalInfo job={job} />
                 <JobDescription job={job} />
