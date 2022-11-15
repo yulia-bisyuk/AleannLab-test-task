@@ -14,18 +14,18 @@ const JobBoard = () => {
   useEffect(() => {
     setLoading(true);
     axios
+      // .get(
+      //   'https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu'
+      // )
       .get('https://www.themuse.com/api/public/jobs?page=1')
       .then(res => {
-        // console.log('res.data', res.data.results);
-        // console.log('imagesPack', imagesPack);
+        console.log('res', res.data);
         const jobsWithImgs = res.data.results.map(data => {
           return {
             ...data,
             url: imagesPack,
           };
         });
-
-        // console.log('jobsWithImgs', jobsWithImgs);
 
         setJobs(jobsWithImgs);
         setSuccess(true);
@@ -49,8 +49,6 @@ const JobBoard = () => {
           jobs.map((job, index) => (
             <ListItem key={job.id}>
               <Image src={job.url[index]} width="66px" height="66px" />
-
-              {/* <Image src={img1} width="66px" height="66px"></Image> */}
 
               <ContentWrapper>
                 <AdditionalInfo job={job} />
