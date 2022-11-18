@@ -9,7 +9,7 @@ const Container = styled.div`
   padding-right: 12px;
   margin-left: auto;
   margin-right: auto;
-  outline: 1px solid black;
+  /* outline: 1px solid black; */
 
   @media screen and (min-width: 1920px) {
     max-width: 1920px;

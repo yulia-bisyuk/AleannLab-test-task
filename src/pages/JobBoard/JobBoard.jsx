@@ -1,25 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import axios from 'axios';
 import { imagesPack } from 'images/images';
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
 import JobDescription from 'components/JobDescription/JobDescription';
-import { ListItem, Image, List, ContentWrapper } from './board.styled';
+import Pagination from 'components/Pagination/Pagination';
+import { ListItem, Image, List, ContentWrapper } from './jobBoard.styled';
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);
+
+  const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     setLoading(true);
     axios
       // .get(
       //   'https://api.json-generator.com/templates/ZM1r0eic3XEy/data?access_token=wm3gg940gy0xek1ld98uaizhz83c6rh2sir9f9fu'
       // )
-      .get('https://www.themuse.com/api/public/jobs?page=1')
+      .get(`https://www.themuse.com/api/public/jobs?page=${page}`)
       .then(res => {
-        console.log('res', res.data);
+        // console.log('res', res.data);
+
         const jobsWithImgs = res.data.results.map(data => {
           return {
             ...data,
@@ -35,7 +39,7 @@ const JobBoard = () => {
         console.error('Error:', err);
         setError(true);
       });
-  }, [success]);
+  }, [page]);
 
   console.log('jobs', jobs);
 
@@ -57,6 +61,7 @@ const JobBoard = () => {
             </ListItem>
           ))}
       </List>
+      <Pagination setCurrentPage={setPage} />
     </>
   );
 };

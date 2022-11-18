@@ -22,7 +22,11 @@ const JobDescription = ({ job }) => {
         <LocationIcon>
           <use href={sprite + '#icon-location'} />
         </LocationIcon>
-        <Details>{job.locations[0].name}</Details>
+        <Details>
+          {job.locations.length !== 0
+            ? job.locations[0].name
+            : 'Location hidden'}
+        </Details>
       </Location>
     </div>
   );
