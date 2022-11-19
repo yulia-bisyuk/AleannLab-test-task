@@ -1,18 +1,27 @@
 import { useMemo, useState } from 'react';
 import axios from 'axios';
+import ClipLoader from 'react-spinners/ClipLoader';
 import { imagesPack } from 'images/images';
 import AdditionalInfo from 'components/AdditionalInfo/AdditionalInfo';
 import JobDescription from 'components/JobDescription/JobDescription';
 import Pagination from 'components/Pagination/Pagination';
-import { ListItem, Image, List, ContentWrapper } from './jobBoard.styled';
+import {
+  ListItem,
+  Image,
+  List,
+  ContentWrapper,
+  Loader,
+} from './jobBoard.styled';
+// import { useContext } from 'react';
+// import { JobDetailsContext } from '../../components/App';
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);
-
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  // const value = useContext(JobDetailsContext);
 
   useMemo(() => {
     setLoading(true);
@@ -45,7 +54,11 @@ const JobBoard = () => {
 
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && (
+        <Loader>
+          <ClipLoader color="#3A4562" size={36} aria-label="Loading Spinner" />
+        </Loader>
+      )}
       {error && <div>Oops... Something went wrong</div>}
       <List>
         {success &&

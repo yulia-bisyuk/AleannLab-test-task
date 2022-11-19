@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import sprite from '../../icons/sprite.svg';
 import './pagination.css';
 
 import ReactPaginate from 'react-paginate';
@@ -16,18 +17,39 @@ const Pagination = ({ setCurrentPage }) => {
     const newOffset = (event.selected * itemsPerPage) % totalJobsPages;
     setItemOffset(newOffset);
   };
+
+  // const next = () => {
+  //   return <span>next</span>;
+  // };
+
   return (
     <>
       <ReactPaginate
         breakLabel="..."
-        nextLabel=">"
+        nextLabel={
+          <div className="wrapper">
+            <span className="divider">|</span>
+            <svg className="nav-icon">
+              <use href={sprite + '#icon-go-pagination-forw'} />
+            </svg>
+          </div>
+        }
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         marginPagesDisplayed={1}
         pageCount={18}
-        previousLabel="< "
+        previousLabel={
+          <div className="wrapper">
+            <svg className="nav-icon">
+              <use href={sprite + '#icon-go-pagination-back'} />
+            </svg>
+            <span className="divider">|</span>
+          </div>
+        }
         renderOnZeroPageCount={null}
         className="container"
+        pageClassName="page"
+        activeClassName="active"
       />
     </>
   );

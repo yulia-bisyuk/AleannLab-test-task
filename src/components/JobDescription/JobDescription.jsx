@@ -1,5 +1,6 @@
 import sprite from '../../icons/sprite.svg';
 import {
+  LinkToDetails,
   JobTitle,
   LocationIcon,
   Details,
@@ -11,12 +12,16 @@ import {
 const JobDescription = ({ job }) => {
   return (
     <div className="allcontent-except-image">
-      <JobTitle>{job.name}</JobTitle>
+      <LinkToDetails to="details" title={job.name}>
+        <JobTitle>{job.name}</JobTitle>
+      </LinkToDetails>
       <Department>
         <Details>Department name</Details>
         <Dot></Dot>
 
-        <Details>{job.categories[0].name}</Details>
+        <Details>
+          {job.categories.length !== 0 ? job.categories[0].name : 'Unknown'}
+        </Details>
       </Department>
       <Location>
         <LocationIcon>

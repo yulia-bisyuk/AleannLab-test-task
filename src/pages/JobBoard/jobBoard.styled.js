@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const List = styled.ul`
   margin-top: 9px;
   margin-bottom: 26px;
@@ -31,4 +36,4 @@ const ContentWrapper = styled.div`
   width: 278px;
 `;
 
-export { List, ListItem, Image, ContentWrapper };
+export { Loader, List, ListItem, Image, ContentWrapper };

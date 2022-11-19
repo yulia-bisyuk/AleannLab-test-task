@@ -1,4 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+const LinkToDetails = styled(Link)`
+  text-decoration: none;
+`;
 
 const JobTitle = styled.h1`
   margin-bottom: 5px;
@@ -17,7 +22,7 @@ const LocationIcon = styled.svg`
 
 const Location = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const Details = styled.span`
@@ -43,4 +48,12 @@ const Dot = styled.span`
   border-radius: 50%;
 `;
 
-export { Location, LocationIcon, JobTitle, Details, Department, Dot };
+export {
+  LinkToDetails,
+  Location,
+  LocationIcon,
+  JobTitle,
+  Details,
+  Department,
+  Dot,
+};
